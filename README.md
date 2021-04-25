@@ -1,0 +1,2 @@
+# MangaDB
+A Manga Dataset
