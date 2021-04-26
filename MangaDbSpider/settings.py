@@ -65,6 +65,10 @@ ROBOTSTXT_OBEY = True
 #ITEM_PIPELINES = {
 #    'MangaDbSpider.pipelines.MangadbspiderPipeline': 300,
 #}
+ITEM_PIPELINES = {
+    'MangaDbSpider.pipelines.TextPipeline': 100,
+    'MangaDbSpider.pipelines.MongoPipeline': 300
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

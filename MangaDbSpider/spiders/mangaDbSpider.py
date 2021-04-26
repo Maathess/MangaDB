@@ -24,3 +24,18 @@ class MangaDbSpider(scrapy.Spider):
         next_urls = response.xpath("//div[@class='spaceit']//a/@href").extract()
         for next_url in next_urls:
             yield Request(response.urljoin(next_url), callback=self.parse_anime_list_page)
+            
+#class MongoPipeline(object):
+#
+#    collection_name = 'manga_items'
+#
+#    def open_spider(self, spider):
+#        self.client = pymongo.MongoClient()
+#        self.db = self.client["MangaDB"]
+#
+#    def close_spider(self, spider):
+#        self.client.close()
+#
+#    def process_item(self, item, spider):
+#        self.db[self.collection_name].insert_one(dict(item))
+#        return item
