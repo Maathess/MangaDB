@@ -29,7 +29,7 @@ def clean_spaces(string):
     
 class MongoPipeline(object):
 
-    collection_name = 'manga_items'
+    collection_name = 'anime_items'
 
     def open_spider(self, spider):
         self.client = pymongo.MongoClient()
