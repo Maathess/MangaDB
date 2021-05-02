@@ -1,5 +1,6 @@
-import pymongo
 import webbrowser
+
+import pymongo
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = client["school"]
