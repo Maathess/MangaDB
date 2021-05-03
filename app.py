@@ -1,17 +1,20 @@
+import flask
 from flask import Flask, render_template
+from flask import Blueprint
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/Manga"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/MangaDB"
 mongo = PyMongo(app)
-
+db = mongo.db
 
 @app.route('/')
 def home():
-    online_users = mongo.db.users.find({"online": True})
-    return render_template('home.html',
-                           online_users = online_users)
+    return render_template('home.html')
 
 @app.route('/test/')
 def test():
-    return render_template('test.html')
+    #animes = db.anime_items.find_one({'title' : "T-Rex"}, {'_id' : 0})
+    #return flask.jsonify(animes)
+    animes = db.anime_items.find({}, {'_id' : 0})
+    return flask.jsonify([todo for todo in animes])
