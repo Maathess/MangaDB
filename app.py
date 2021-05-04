@@ -15,7 +15,6 @@ def home():
 @app.route('/test/')
 def test():
     animes = db.anime_items.find({}, {'_id': 0})
-
     return flask.jsonify([todo for todo in animes])
     #animes = db.anime_items.find_one({'title' : "T-Rex"}, {'_id' : 0})
     #return flask.jsonify(animes)
