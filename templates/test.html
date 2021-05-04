@@ -6,10 +6,10 @@
         <INPUT TYPE="BUTTON" VALUE=" <- Retour " onClick="history.back()">
     </form>
     <br>
-    {% for item in animes %}
+    {% for item in animes|sort(reverse=true, attribute="rating") %}
     <li>
         <label>
-            <span>  TITLE :  {{item.title}} <br> Rating : {{item.rating}} <br><br></span>
+            <span>  TITLE :  {{item.title}} <br> Rating : {{item.rating}} <br> Type : {{item.type}} <br><br></span>
         </label>
     </li>
     {% endfor %}

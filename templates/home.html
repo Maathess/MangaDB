@@ -3,13 +3,14 @@
 {% block content %}
     <img src="https://preview.redd.it/99nxlz8pte031.png?width=1920&format=png&auto=webp&s=7e0158219d0c96ccec30b35d9e58c346c45e7f88"/>
     <h1>MANGA DB</h1>
-
-    <form name="search" action="/test/" method="get">
-        Type: <SELECT name="Type" size="1">
-            <OPTION>TV<OPTION>Anime<OPTION>Manga</OPTION></SELECT>
-        Nombre d'episodes : <SELECT name="NbEp" size="1">
+    <!--fonction affichage-->
+    <form name="search" action="/test/" method="post">
+        Type: <SELECT name="type" size="1">
+            <OPTION>Tout<OPTION>TV<OPTION>Anime<OPTION>OVA<OPTION>Movie<OPTION>Special<OPTION>ONA</SELECT>
+        Nombre d'episodes : <SELECT name="nbEpisode" size="1">
             <OPTION>1-15<OPTION>15-50<OPTION>50-100<OPTION>+100</SELECT>
-        Note : <input type="text" name="note">
+        Affichage : <SELECT name="affichage" size="1">
+            <OPTION>Croissant<OPTION>Décroissant</SELECT>
     <input type="submit" value="Valider">
     </form>
 
