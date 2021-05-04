@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>
-        Test
-    </h1>
+    <img src="https://preview.redd.it/99nxlz8pte031.png?width=1920&format=png&auto=webp&s=7e0158219d0c96ccec30b35d9e58c346c45e7f88"/>
+    <form>
+        <INPUT TYPE="BUTTON" VALUE=" <- Retour " onClick="history.back()">
+    </form>
+    <br>
+    {% for item in animes %}
+    <li>
+        <label>
+            <span>  TITLE :  {{item.title}} <br> Rating : {{item.rating}} <br><br></span>
+        </label>
+    </li>
+    {% endfor %}
 {% endblock %}
