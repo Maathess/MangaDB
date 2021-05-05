@@ -73,12 +73,5 @@ def test():
                 {'episodesInt': {'$gt': 100}}]},
                 {'title': 1, 'rating': 1, 'type': 1, 'episodesInt': 1, 'synopsis': 1, '_id': 0})
 
-    print animes
-    #print("Type selectionne : '" + type + "' - Nombre episodes selectionnes :" + number_of_episode + "' - Affichage selectione : '" + sort + "'")
     print("Type selectionne : '" + type + "' - Nombre episodes selectionnes :" + number_of_episode)
     return render_template('list.html', animes=list(animes))
-
-
-@app.route('/details/', methods=["POST"])
-def details():
-    return render_template('details.html')
