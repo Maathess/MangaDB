@@ -5,11 +5,11 @@ MangaDB est la plateforme qui va t'aider à choisir le prochain anime à matter 
 ## Arborescence (dossier/fichier important)
 ```bash
 ├── MangaDbSpider
-    ├── spiders
-    |   |── mangaDbSpider.ipynb (notebook explicatif)
-    |   └── mangaDbSpider.py
-    |── pipelines.py
-    └── settings.py
+|   ├── spiders
+|   |   |── mangaDbSpider.ipynb (notebook explicatif)
+|   |   └── mangaDbSpider.py
+|   |── pipelines.py
+|   └── settings.py
 ├── app.py
 ├── scrapy.cfg
 └── README.md
