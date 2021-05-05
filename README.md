@@ -3,7 +3,7 @@
 MangaDB est la plateforme qui va t'aider à choisir le prochain anime à matter !
 
 ## Arborescence (dossier/fichier important)
-'''bash
+```bash
 ├── MangaDbSpider
     ├── spiders
     |   |── mangaDbSpider.ipynb (notebook explicatif)
@@ -13,7 +13,7 @@ MangaDB est la plateforme qui va t'aider à choisir le prochain anime à matter 
 ├── app.py
 ├── scrapy.cfg
 └── README.md
-'''
+``` 
 ## Les technologies :
 Python (scrapy, pymongo, flask, pandas)
 MongoDB
