@@ -21,7 +21,7 @@ class TextPipeline(object):
             return item
         else:
             raise DropItem("Missing title in %s" % item)
-
+cd
 
 def clean_spaces(string):
     if string:
@@ -29,7 +29,7 @@ def clean_spaces(string):
     
 class MongoPipeline(object):
 
-    collection_name = 'anime_items'
+    collection_name = 'esgipres_items'
 
     def open_spider(self, spider):
         self.client = pymongo.MongoClient()
