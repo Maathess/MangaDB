@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <img src="https://preview.redd.it/99nxlz8pte031.png?width=1920&format=png&auto=webp&s=7e0158219d0c96ccec30b35d9e58c346c45e7f88"/>
+    <form>
+        <br><INPUT class="button" TYPE="BUTTON" VALUE=" <- Retour " onClick="history.back()">
+    </form>
+    <br>
+    <hr style="width:100%;text-align:left;margin-left:0">
+    {% for item in animes|sort(reverse=true, attribute="rating") %}
+    <li>
+        <label>
+            <span>
+                <span id="title">TITLE :  {{item.title}}</span><br>
+                <span id="rating">Rating : {{item.rating}}</span><br>
+                <span id="type">Type : {{item.type}} </span><br><br>
+                <form>
+                    <INPUT class="button" TYPE="BUTTON" VALUE=" Details " onClick="history.back()">
+                </form>
+                <hr style="width:100%;text-align:left;margin-left:0">
+            </span>
+        </label>
+    </li>
+    {% endfor %}
+{% endblock %}

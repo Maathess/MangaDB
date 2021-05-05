@@ -3,15 +3,36 @@
 {% block content %}
     <img src="https://preview.redd.it/99nxlz8pte031.png?width=1920&format=png&auto=webp&s=7e0158219d0c96ccec30b35d9e58c346c45e7f88"/>
     <h1>MANGA DB</h1>
-    <!--fonction affichage-->
-    <form name="search" action="/test/" method="post">
-        Type: <SELECT name="type" size="1">
-            <OPTION>Tout<OPTION>TV<OPTION>Anime<OPTION>OVA<OPTION>Movie<OPTION>Special<OPTION>ONA</SELECT>
-        Nombre d'episodes : <SELECT name="nbEpisode" size="1">
-            <OPTION>1-15<OPTION>15-50<OPTION>50-100<OPTION>+100</SELECT>
-        Affichage : <SELECT name="affichage" size="1">
-            <OPTION>Croissant<OPTION>Décroissant</SELECT>
-    <input type="submit" value="Valider">
-    </form>
+
+    <div>
+        <form name="search" action="/list/" method="post">
+
+        <label for="fname">Type:</label>
+        <SELECT class="searchForm" name="type" id="fname" size="1">
+            <OPTION>Tout</OPTION>
+            <OPTION>TV</OPTION>
+            <OPTION>OVA</OPTION>
+            <OPTION>Movie</OPTION>
+            <OPTION>Special</OPTION>
+            <OPTION>ONA</OPTION>
+        </SELECT>
+
+        <label for="fnumber">Nombre d'episodes : </label>
+        <SELECT class="searchForm" name="nbEpisode" id="fnumber" size="1">
+            <OPTION>1-15</OPTION>
+            <OPTION>15-50</OPTION>
+            <OPTION>50-100</OPTION>
+            <OPTION>+100</OPTION>
+        </SELECT>
+
+        <label for="fdisplay">Affichage : </label>
+        <SELECT class="searchForm" name="affichage" id="fdisplay" size="1">
+            <OPTION>Croissant</OPTION>
+            <OPTION>Décroissant</OPTION>
+        </SELECT>
+
+        <input type="submit" value="Valider">
+        </form>
+    </div>
 
 {% endblock %}
