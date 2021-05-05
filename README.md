@@ -26,7 +26,7 @@ Se rendre dans le dossier "spiders" et écrire la commande suivante :
 
 ### Création collection
 Sur collection scrappée aller sur onglet "Aggregate"
-1- select $addFields
+1- select $addFields\n
 2- {
       episodesInt: { $toInt: "$episodes" }
    }
