@@ -39,7 +39,8 @@ Sur collection scrappée aller sur onglet "Aggregate"
 Dans le terminal "flask run"
 
 ### Utilisation du formulaire :
-
+```bash 
+deux listes déroulantes une pour le type de programme et l'autre pour le nombres d'épisodes souhaités
 
 ## Usage
 Renseigner dans le formulaire vos critères et soumettre le formulaire.
