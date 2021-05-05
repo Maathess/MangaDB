@@ -15,11 +15,12 @@ MangaDB est la plateforme qui va t'aider à choisir le prochain anime à matter 
 └── README.md
 ``` 
 ## Les technologies :
-Python (scrapy, pymongo, flask, flask-pymongo, pandas)
+Python 2.7 (scrapy, pymongo, flask, flask-pymongo, pandas)
 MongoDB
 
 ## Installation
 ### Scrapping :
+Créer environnement python 3.8
 Se rendre dans le dossier "spiders" et écrire la commande suivante : 
 1- scrapy runspider mangaDBSpider.py
 2- scrapy crawl Manga
