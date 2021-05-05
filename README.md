@@ -24,6 +24,15 @@ Se rendre dans le dossier "spiders" et écrire la commande suivante :
 1- scrapy runspider mangaDBSpider.py
 2- scrapy crawl Manga
 
+### Création collection
+Sur collection scrappée aller sur onglet "Aggregate"
+1- select $addFields
+2- {
+      episodesInt: { $toInt: "$episodes" }
+   }
+3- Save
+4- Créer view "animes"
+
 ### Utilisation du formulaire :
 
 
