@@ -22,11 +22,12 @@ MongoDB
 Créer projet depuis branch flask-pymongo_evol
 
 ### Scrapping :
+```
 Créer environnement python 3.8
 Se rendre dans le dossier "spiders" et écrire la commande suivante : 
 1- scrapy runspider mangaDBSpider.py
 2- scrapy crawl Manga
-
+```
 ### Création collection
 ```bash
 Sur collection scrappée aller sur onglet "Aggregate"
