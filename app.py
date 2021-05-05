@@ -17,9 +17,6 @@ def home():
 def test():
     type = request.form['type']
     number_of_episode = request.form['nbEpisode']
-    #sort = request.form['affichage']
-
-    #db.animes.update({},{'$set': {'episodesInt': {'$toInt': "$episodes"}}}]
 
     if type == "Tout":
         if number_of_episode == "1-15":
