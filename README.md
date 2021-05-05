@@ -19,6 +19,8 @@ Python 2.7 (scrapy, pymongo, flask, flask-pymongo, pandas)
 MongoDB
 
 ## Installation
+Créer projet depuis branch flask-pymongo_evol
+
 ### Scrapping :
 Créer environnement python 3.8
 Se rendre dans le dossier "spiders" et écrire la commande suivante : 
