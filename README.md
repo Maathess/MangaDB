@@ -19,13 +19,12 @@ Python (scrapy, pymongo, flask, pandas)
 MongoDB
 
 ## Installation
-
-###Scrapping :
+### Scrapping :
 Se rendre dans le dossier "spiders" et écrire la commande suivante : 
 1- scrapy runspider mangaDBSpider.py
 2- scrapy crawl Manga
 
-### Utilisation du formulaire :
+## Utilisation du formulaire :
 
 
 ## Usage
