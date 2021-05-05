@@ -19,6 +19,8 @@ Python (scrapy, pymongo, flask, pandas)
 MongoDB
 
 ## Installation
+Créer projet depuis branch flask-pymongo_evol
+
 ### Scrapping :
 Se rendre dans le dossier "spiders" et écrire la commande suivante : 
 1- scrapy runspider mangaDBSpider.py
