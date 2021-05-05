@@ -15,7 +15,7 @@ MangaDB est la plateforme qui va t'aider à choisir le prochain anime à matter 
 └── README.md
 ``` 
 ## Les technologies :
-Python (scrapy, pymongo, flask, pandas)
+Python (scrapy, pymongo, flask, flask-pymongo, pandas)
 MongoDB
 
 ## Installation
@@ -34,6 +34,10 @@ Sur collection scrappée aller sur onglet "Aggregate"
 3- Save
 4- Créer view "animes"
 ```
+
+### Lancer application en local
+Dans le terminal "flask run"
+
 ### Utilisation du formulaire :
 
 
