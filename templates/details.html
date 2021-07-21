@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <img src="https://preview.redd.it/99nxlz8pte031.png?width=1920&format=png&auto=webp&s=7e0158219d0c96ccec30b35d9e58c346c45e7f88"/>
+    <form>
+        <br><input class="button" type="button" value=" <- Retour " onClick="history.back()">
+    </form><br>
+    <hr style="width:100%; text-align:left; margin-left:0">
+
+    {% if title %}
+        <h1>Détails pour : {{title}}</h1><br>
+        <h1>Test : {{test}}</h1><br>
+        {% for detail in details %}
+            <h2>{{detail}}</h2>
+        {% endfor %}
+
+        <!--h2>Test : {{details}}</h2-->
+    {% else %}
+        <h1>Erreur...</h1>
+    {% endif %}
+{% endblock content %}

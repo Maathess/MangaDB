@@ -7,18 +7,27 @@
 </form>
 <br>
 <hr style="width:100%;text-align:left;margin-left:0">
-{% for item in animes|sort(reverse=true, attribute="rating") %}
-<li>
-    <label>
-        <span>
-            <span id="title">TITLE :  {{item.title}}</span><br>
-            <span id="rating">Rating : {{item.rating}}</span><br>
-            <span id="episodes">Episodes : {{item.episodesInt}}</span><br>
-            <span id="type">Type : {{item.type}} </span><br>
-            <span id="synopsis">Synopsys : <div>{{item.synopsis}} </div></span><br><br>
-            <hr style="width:100%;text-align:left;margin-left:0">
-        </span>
-    </label>
-</li>
+{% if animes %}
+    {% for item in animes|sort(reverse=true, attribute="rating") %}
+        <li>
+            <label>
+                <span>
+
+                        <span name="title" id="title">TITLE :  {{item.title}}</span><br>
+                        <span id="rating">Rating : {{item.rating}}</span><br>
+                        <span id="episodes">Episodes : {{item.episodesInt}}</span><br>
+                        <span id="type">Type : {{item.type}} </span><br>
+                        <span id="synopsis">Synopsys : <div>{{item.synopsis}} </div></span><br>
+                    <form action="http://127.0.0.1:5000/details" method="POST">
+                        <button name="selected_anime" value="{{item.title}}">Details</button>
+                    </form>
+
+                    <br><br><hr style="width:100%;text-align:left;margin-left:0">
+                </span>
+            </label>
+        </li>
     {% endfor %}
-{% endblock %}
+{% else %}
+  <h1>Erreur...</h1>
+{% endif %}
+{% endblock content %}

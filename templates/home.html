@@ -5,28 +5,27 @@
 <h1>MANGA DB</h1>
 
 <div>
-    <form name="search" action="/list/" method="post">
+    <form name="search" action="http://127.0.0.1:5000/list" method="post">
+        <label for="fname">Type:</label>
+        <SELECT class="searchForm" name="type" id="fname" size="1">
+            <OPTION>Tout</OPTION>
+            <OPTION>TV</OPTION>
+            <OPTION>OVA</OPTION>
+            <OPTION>Movie</OPTION>
+            <OPTION>Special</OPTION>
+            <OPTION>ONA</OPTION>
+        </SELECT>
 
-    <label for="fname">Type:</label>
-    <SELECT class="searchForm" name="type" id="fname" size="1">
-        <OPTION>Tout</OPTION>
-        <OPTION>TV</OPTION>
-        <OPTION>OVA</OPTION>
-        <OPTION>Movie</OPTION>
-        <OPTION>Special</OPTION>
-        <OPTION>ONA</OPTION>
-    </SELECT>
+        <label for="fnumber">Nombre d'episodes : </label>
+        <SELECT class="searchForm" name="nbEpisode" id="fnumber" size="1">
+            <OPTION>> 1</OPTION>
+            <OPTION>1-15</OPTION>
+            <OPTION>15-50</OPTION>
+            <OPTION>50-100</OPTION>
+            <OPTION>+100</OPTION>
+        </SELECT>
 
-    <label for="fnumber">Nombre d'episodes : </label>
-    <SELECT class="searchForm" name="nbEpisode" id="fnumber" size="1">
-        <OPTION>> 1</OPTION>
-        <OPTION>1-15</OPTION>
-        <OPTION>15-50</OPTION>
-        <OPTION>50-100</OPTION>
-        <OPTION>+100</OPTION>
-    </SELECT>
-
-    <input type="submit" value="Valider">
+        <input type="submit" value="Valider">
     </form>
 </div>
 {% endblock %}
