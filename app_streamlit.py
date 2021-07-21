@@ -6,9 +6,21 @@ my_db = my_client["MangaDB"]
 my_col = my_db["animes"]
 
 
-def get_number_of_episodes():
-    number_of_episodes = 0
-    return number_of_episodes
+def request(selected_number, selected_format):
+    request_format = {}
+    if selected_format != "All":
+        request_format = {'type': selected_format}
+
+    if selected_number == "1 - 15":
+        return {'$and': [request_format, {'episodesInt': {'$gt': 1}}, {'episodesInt': {'$lt': 15}}]}
+    elif selected_number == "15 - 50":
+        return {'$and': [request_format, {'episodesInt': {'$gt': 15}}, {'episodesInt': {'$lt': 50}}]}
+    elif selected_number == "50 - 100":
+        return {'$and': [request_format, {'episodesInt': {'$gt': 50}}, {'episodesInt': {'$lt': 100}}]}
+    elif selected_number == "> 1":
+        return {'$and': [request_format, {'episodesInt': {'$gt': 1}}]}
+    else:
+        return {'$and': [request_format, {'episodesInt': {'$gt': 100}}]}
 
 
 def main():
@@ -88,52 +100,31 @@ def main():
         with details_expander:
             col1, col2, col3 = st.beta_columns(3)
             with col1:
-                format = st.selectbox("Format",
+                selected_format = st.selectbox("Format",
                                       ("All", "TV", "OVA", "Movie", "Special", "ONA"))
-                studio = st.selectbox("Studio", ("truc", "machin", "bidule"))
+                selected_studio = st.selectbox("Studio", ("truc", "machin", "bidule"))
             with col2:
                 nb_episode = st.selectbox("Number of episodes",
                                           ("> 1", "1 - 15", "15 - 50", "50 - 100", "100+"))
             with col3:
-                source = st.selectbox("Source", ("Manga", "Light novel", "Other"))
+                selected_source = st.selectbox("Source", ("Manga", "Light novel", "Other"))
 
         button = form.form_submit_button(label="Submit")
 
         if button:
-            st.write("format -->", format, " ; episodes -->", nb_episode, " ; genre -->", studio, " ; studio -->", studio, " ; source -->", source)
             st.header("Result(s) : ")
-            if nb_episode == "1 - 15":
-                animes = my_col.find({'$and': [
-                    {'episodesInt': {'$gt': 1}},
-                    {'episodesInt': {'$lt': 15}}]}, end_request)
-            elif nb_episode == "15 - 50":
-                animes = my_col.find({'$and': [
-                    {'episodesInt': {'$gt': 15}},
-                    {'episodesInt': {'$lt': 50}}]}, end_request)
-            elif nb_episode == "50 - 100":
-                animes = my_col.find({'$and': [
-                    {'episodesInt': {'$gt': 50}},
-                    {'episodesInt': {'$lt': 100}}]}, end_request)
-            elif nb_episode == "> 1":
-                animes = my_col.find(
-                    {'episodesInt': {'$gt': 1}},
-                    end_request)
-            else:
-                animes = my_col.find({'$and': [
-                    {'episodesInt': {'$gt': 100}}]}, end_request)
+            animes = my_col.find(request(nb_episode, selected_format), end_request)
 
-            if len(animes) == 0:
-                st.write("Sorry, no anime found for your search...")
-            else:
-                for anime in animes:
-                    image, details = st.beta_columns([1, 4])
-                    with image:
-                        st.image(test, width=100)
-                    with details:
-                        st.write(number_anime, " -", anime["title"])
-                        st.write("number of episodes :", anime["episodesInt"])
-                    number_anime += 1
-                    st.markdown("---")
+            for anime in animes:
+                image, details = st.beta_columns([1, 4])
+                with image:
+                    st.image(test, width=100)
+                with details:
+                    st.write(str(number_anime), " -", anime["title"])
+                    st.write("number of episodes :", str(anime["episodesInt"]))
+                    st.write("Format :", anime["type"])
+                number_anime += 1
+                st.markdown("---")
 
     else:
         st.header("Stats")
@@ -147,7 +138,6 @@ def main():
             st.subheader("By genre")
         else:
             st.subheader("By studio")
-
 
         # note & type
 

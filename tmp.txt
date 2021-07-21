@@ -1,0 +1,19 @@
+            if nb_episode == "1 - 15":
+                animes = my_col.find({'$and': [
+                    {'episodesInt': {'$gt': 1}},
+                    {'episodesInt': {'$lt': 15}}]}, end_request)
+            elif nb_episode == "15 - 50":
+                animes = my_col.find({'$and': [
+                    {'episodesInt': {'$gt': 15}},
+                    {'episodesInt': {'$lt': 50}}]}, end_request)
+            elif nb_episode == "50 - 100":
+                animes = my_col.find({'$and': [
+                    {'episodesInt': {'$gt': 50}},
+                    {'episodesInt': {'$lt': 100}}]}, end_request)
+            elif nb_episode == "> 1":
+                animes = my_col.find(
+                    {'episodesInt': {'$gt': 1}},
+                    end_request)
+            else:
+                animes = my_col.find({'$and': [
+                    {'episodesInt': {'$gt': 100}}]}, end_request)
