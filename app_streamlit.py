@@ -7,6 +7,7 @@ my_col = my_db["animes"]
 
 
 def request(selected_number, selected_format):
+    genres = []
     request_format = {}
     if selected_format != "All":
         request_format = {'type': selected_format}
@@ -101,11 +102,13 @@ def main():
             col1, col2, col3 = st.beta_columns(3)
             with col1:
                 selected_format = st.selectbox("Format",
-                                      ("All", "TV", "OVA", "Movie", "Special", "ONA"))
-                selected_studio = st.selectbox("Studio", ("truc", "machin", "bidule"))
+                                               ("All", "TV", "OVA", "Movie", "Special", "ONA"))
+                selected_studio = st.selectbox("Studio",
+                                               ("Toei Animation", "Madhouse", "Studio Deen", "Studio Pierrot", "Bones", "Mappa", "Ufotable", "Wit Studio", "Studio Ghibli"))
             with col2:
                 nb_episode = st.selectbox("Number of episodes",
                                           ("> 1", "1 - 15", "15 - 50", "50 - 100", "100+"))
+                selected_sorting = st.selectbox("Sorting", ("None", "By name", "By rating"))
             with col3:
                 selected_source = st.selectbox("Source", ("Manga", "Light novel", "Other"))
 
@@ -113,15 +116,22 @@ def main():
 
         if button:
             st.header("Result(s) : ")
-            animes = my_col.find(request(nb_episode, selected_format), end_request)
+            if selected_sorting == "None":
+                animes = my_col.find(request(nb_episode, selected_format), end_request)
+            elif selected_sorting == "By name":
+                animes = my_col.find(request(nb_episode, selected_format), end_request).sort("title", pymongo.ASCENDING)
+            else:
+                animes = my_col.find(request(nb_episode, selected_format), end_request).sort("rating", pymongo.DESCENDING)
 
             for anime in animes:
+                # TODO: faire des order by title ou score
                 image, details = st.beta_columns([1, 4])
                 with image:
                     st.image(test, width=100)
                 with details:
                     st.write(str(number_anime), " -", anime["title"])
-                    st.write("number of episodes :", str(anime["episodesInt"]))
+                    st.write("Rating :", anime["rating"])
+                    st.write("Number of episodes :", str(anime["episodesInt"]))
                     st.write("Format :", anime["type"])
                 number_anime += 1
                 st.markdown("---")
