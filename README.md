@@ -15,6 +15,7 @@ MangaDB est la plateforme qui va t'aider à choisir le prochain anime à matter 
 ```
 Python 2.7 (selenium, pymongo, flask, flask-pymongo, pandas, request)
 MongoDB
+chromedriver
 ```
 ## Installation
 ### Scrapping :
