@@ -44,7 +44,7 @@ Sur collection scrappée aller sur onglet "Aggregate"
 Dans le terminal "flask run" puis ouvrir navigateur et aller sur http://127.0.0.1:5000/ 
 
 ### Utilisation du formulaire :
-Deux listes déroulantes une pour le type de programme et l'autre pour le nombres d'épisodes souhaités et bouton de soumission du formulaire
+Plusieurs options de filtres
 ## Usage :
 Renseigner dans le formulaire vos critères et soumettre le formulaire.
 
