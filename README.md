@@ -9,7 +9,7 @@ MangaDB est la plateforme qui va t'aider à choisir le prochain anime à matter 
 ├── anime_no_split.csv (data without splitting "Genres" & "Studios")
 ├── anime_splitted.csv (split "Genres" & "Studios")
 ├── app_streamlit.py
-└── mangaDbSpider.ipynb (scrapper & ETL)
+└── MangaDB_scrapper.ipynb (scrapper & ETL)
 ``` 
 ## Les technologies :
 ```
