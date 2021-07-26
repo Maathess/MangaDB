@@ -1,6 +1,6 @@
 # MangaDB
 
-MangaDB est la plateforme qui va t'aider à choisir le prochain anime à matter !
+MangaDB est la plateforme qui va t'aider à choisir le prochain anime/manga à matter !
 
 ## Arborescence (dossiers/fichiers importants)
 ```bash
@@ -31,10 +31,11 @@ Version CSV :
 2 - Charger le fochier csv
 3 - renseigner le type des colonnes et terminer le chargement
 
-Sur collection scrappée aller sur onglet "Aggregate"
+Si le changement de type n'a pas été réaliser (pour les int)
+Dans la collection créée, aller sur onglet "Aggregate"
 1- select $addFields
 2- {
-      episodesInt: { $toInt: "$episodes" }
+      episodesInt: { $toInt: "$le_nom_de_la_colonne" }
    }
 3- Save
 4- Créer view "animes"
@@ -42,10 +43,11 @@ Sur collection scrappée aller sur onglet "Aggregate"
 
 ### Lancer application en local
 
-Dans le terminal "flask run" puis ouvrir navigateur et aller sur http://127.0.0.1:5000/ 
+Dans le terminal "Streamlit run app_streamlit.py" et se rendre à l'url indiquer dans la console
 
 ### Utilisation du formulaire :
-Plusieurs options de filtres
+Plusieurs options de filtres !!! Amusez vous :D 
+
 ## Usage :
 Renseigner dans le formulaire vos critères et soumettre le formulaire.
 
