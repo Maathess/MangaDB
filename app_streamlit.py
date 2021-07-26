@@ -177,7 +177,7 @@ def main():
                 m_selected_genre = st.selectbox("Genre",
                                                 (" All", " Action", " Adventure", " Comedy", " Fantasy", " Horror",
                                                  " Romance", " Shojo", " Shounen", " Seinen"))
-                m_selected_type = st.selectbox("Type", (" All", " Manga", " Manhua",  " Manhwa", " Novel", " Light Novel"))
+                m_selected_type = st.selectbox("Type", (" All", " Manga", " Manhua",  " Manhwa", " Novel", " Light Novel", " One-shot"))
             with col2:
                 m_selected_status = st.selectbox("Status",
                                                  (" All", " Publishing", " Finished", " On Hiatus"))
