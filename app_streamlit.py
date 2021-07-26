@@ -1,7 +1,5 @@
 import streamlit as st
 import pymongo
-import altair as alt
-import pandas as p
 
 my_client = pymongo.MongoClient("mongodb://localhost:27017/")
 my_db = my_client["MangaDB"]
@@ -10,28 +8,45 @@ my_db = my_client["MangaDB"]
 my_col = my_db["new_animes_no_split"]
 
 
-def request(selected_number, selected_title):
+def request(selected_number, selected_title, selected_type, selected_studio, selected_source, selected_status):
     genres = []
-    request_format = {}
+    request_type = {}
     request_title = {}
+    request_studio = {}
+    request_source = {}
+    request_status = {}
 
     if selected_title != "":
         # search anime where title contains selected_title and ignore case
         request_title = {'Title': {'$regex': selected_title, '$options': 'i'}}
 
-    # if selected_format != "All":
-    #     request_format = {'Type': selected_format}
+    if selected_type != " All":
+        request_type = {'Type': selected_type}
+
+    if selected_studio != " All":
+        request_studio = {'Studio': {'$regex': selected_studio, '$options': 'i'}}
+
+    if selected_source != " All":
+        request_source = {'Sources': selected_source}
+
+    if selected_status != " All":
+        request_status = {'Status': selected_status}
 
     if selected_number == "1 - 15":
-        return {'$and': [request_title, request_format, {'Episodes': {'$gt': 1}}, {'Episodes': {'$lt': 15}}]}
+        return {'$and': [request_title, request_type, request_studio, request_source, request_status,
+                         {'Episodes': {'$gt': 1}}, {'Episodes': {'$lt': 15}}]}
     elif selected_number == "15 - 50":
-        return {'$and': [request_title, request_format, {'Episodes': {'$gt': 15}}, {'Episodes': {'$lt': 50}}]}
+        return {'$and': [request_title, request_type, request_studio, request_source, request_status,
+                         {'Episodes': {'$gt': 15}}, {'Episodes': {'$lt': 50}}]}
     elif selected_number == "50 - 100":
-        return {'$and': [request_title, request_format, {'Episodes': {'$gt': 50}}, {'Episodes': {'$lt': 100}}]}
+        return {'$and': [request_title, request_type, request_studio, request_source, request_status,
+                         {'Episodes': {'$gt': 50}}, {'Episodes': {'$lt': 100}}]}
     elif selected_number == "> 1":
-        return {'$and': [request_title, request_format, {'Episodes': {'$gt': 1}}]}
+        return {'$and': [request_title, request_type, request_studio, request_source, request_status,
+                         {'Episodes': {'$gt': 1}}]}
     else:
-        return {'$and': [request_title, request_format, {'Episodes': {'$gt': 100}}]}
+        return {'$and': [request_title, request_type, request_studio, request_source, request_status,
+                         {'Episodes': {'$gt': 100}}]}
 
 
 def main():
@@ -110,43 +125,37 @@ def main():
 
         details_expander = form.beta_expander("More details")
         with details_expander:
-            col1, col2 = st.beta_columns(2)
+            col1, col2, col3 = st.beta_columns(3)
             with col1:
+                selected_type = st.selectbox("Format",
+                                             (" All", " TV", " OVA", " Movie", " Special", " ONA", " Music"))
+
+                selected_studio = st.selectbox("Studio",
+                                               (" All", " Toei Animation", " Madhouse", " Studio Deen", " Studio Pierrot", " Bones",
+                                                " Mappa", " Ufotable", " Wit Studio", " Studio Ghibli", " Square Enix"))
+            with col2:
                 nb_episode = st.selectbox("Number of episodes",
                                           ("> 1", "1 - 15", "15 - 50", "50 - 100", "100+"))
-            with col2:
+                selected_source = st.selectbox("Source",
+                                               (" All", " Manga", " Light novel", " Visual novel", " Original"))
+            with col3:
                 selected_sorting = st.selectbox("Sorting",
                                                 ("None", "By name", "By rating"))
-            # col1, col2, col3 = st.beta_columns(3)
-            # with col1:
-            #     selected_format = st.selectbox("Format",
-            #                                    (" All", " TV", " OVA", " Movie", " Special", " ONA", " Music"))
-            #
-            #     # selected_studio = st.selectbox("Studio",
-            #     #                                (" Toei Animation", " Madhouse", " Studio Deen", " Studio Pierrot", " Bones",
-            #     #                                 " Mappa", " Ufotable", " Wit Studio", " Studio Ghibli", " Square Enix"))
-            # with col2:
-            #     nb_episode = st.selectbox("Number of episodes",
-            #                               ("> 1", "1 - 15", "15 - 50", "50 - 100", "100+"))
-            # with col3:
-            #     selected_sorting = st.selectbox("Sorting",
-            #                                     ("None", "By name", "By rating"))
-            #
-            #     # selected_source = st.selectbox("Source",
-            #     #                                ("Manga", "Light novel", "Other"))
+                selected_status = st.selectbox("Status",
+                                               (" All", " Currently Airing", " Finished Airing"))
 
         button = form.form_submit_button(label="Submit")
 
         if button:
 
             if selected_sorting == "None":
-                # animes = my_col.find({'Title': {'$regex': selected_title, '$options': 'i'}}, end_request)
-                animes = my_col.find(request(nb_episode, selected_title), end_request)
+                animes = my_col.find(request(nb_episode, selected_title, selected_type, selected_studio, selected_source, selected_status),
+                                     end_request)
             elif selected_sorting == "By name":
-                animes = my_col.find(request(nb_episode, selected_title),
+                animes = my_col.find(request(nb_episode, selected_title, selected_type, selected_studio, selected_source, selected_status),
                                      end_request).sort("Title", pymongo.ASCENDING)
             else:
-                animes = my_col.find(request(nb_episode, selected_title),
+                animes = my_col.find(request(nb_episode, selected_title, selected_type, selected_studio, selected_source, selected_status),
                                      end_request).sort("Rating", pymongo.DESCENDING)
 
             if animes.count() != 0:
@@ -170,8 +179,6 @@ def main():
                             st.write("**Duration :**", anime["Duration"])
                             st.write("**Studio :**", anime["Studio"])
                             st.write("**Source :**", anime["Sources"])
-
-
                     number_anime += 1
                     st.markdown("---")
             else:
